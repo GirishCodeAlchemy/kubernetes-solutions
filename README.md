@@ -28,7 +28,8 @@ The Pod is still there!
 ```
 You can re-enter the Pod again using the `kubectl exec` command:
 ``` bash
-kubectl exec -i --tty curlpod -- sh
+kubectl exec -it curlpod sh
+kubectl attach curlpod -c curlpod -i -t
 ```
 Or, you can delete the Pod with the kubectl delete pod command:
 ``` bash
