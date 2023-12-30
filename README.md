@@ -70,5 +70,15 @@ kubectl uncordon <node-name>
 kubectl exec -i -t <pod_name> -- cat /etc/resolv.conf
 kubectl exec -i -t <pod_name> -- nslookup kubernetes.default
 ```
+<h1></h1>
+
+## Issue 6: Track and sort by pod memory usage 
+
+>#### Solution:
+
+```bash
+kubectl top pods -a --sort-by=memory
+kubectl top pods -n <namespace> --selector=app=<app-lablename> --sort-by=memory
+```
 
 
