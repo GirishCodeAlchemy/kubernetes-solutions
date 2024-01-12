@@ -86,7 +86,7 @@ kubectl top pods -n <namespace> --selector=app=<app-lablename> --sort-by=memory
 >#### Solution:
 
 ```bash
-kubectl scale deployments <stateful-set-name> --replicas=<new-replicas>
+kubectl scale deployments <deployment-name> --replicas=<new-replicas>
 kubectl scale statefulsets <stateful-set-name> --replicas=<new-replicas>
 ```
 
