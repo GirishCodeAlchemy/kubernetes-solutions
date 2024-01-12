@@ -1,8 +1,10 @@
+---
 <h1 align="center"> Kubernetes Solutions </h1>
 <blockquote align="center">
   Common issues and solutions related to Kubernetes
 </blockquote>
 
+----
 
 ## Issue 1: Ingress not getting removed
 Even after running the command `kubectl delete ingress <ingress_name> --force --grace-period=0`, the Ingress is not getting removed.
