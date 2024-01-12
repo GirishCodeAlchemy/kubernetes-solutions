@@ -81,4 +81,12 @@ kubectl top pods -a --sort-by=memory
 kubectl top pods -n <namespace> --selector=app=<app-lablename> --sort-by=memory
 ```
 
+## Issue 7: Scale down/Up the replicas for deployments and statefulset
+
+>#### Solution:
+
+```bash
+kubectl scale deployments <stateful-set-name> --replicas=<new-replicas>
+kubectl scale statefulsets <stateful-set-name> --replicas=<new-replicas>
+```
 
