@@ -1,4 +1,4 @@
-<h1 align="center"> 🚀  Kubernetes Solutions 🚀 </h1>
+<h1 align="center"> <a href="https://girishcodealchemy.github.io/kubernetes-solutions/"> 🚀  Kubernetes Solutions 🚀 </a></h1>
 <p align="center"> <img src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/12ac2437-a185-4112-8abb-01e8ec797b80" width="600" alt="Kubernetes solutions">   </p>
 <blockquote align="center">
   Common issues and solutions related to Kubernetes
@@ -6,7 +6,7 @@
 
 ----
 
-## [Templates](./kubernetes-Templates/README.md)
+## [Kubernetes Sample Templates](./kubernetes-Templates/README.md)
 
 ## Issue 1: Ingress not getting removed
 Even after running the command `kubectl delete ingress <ingress_name> --force --grace-period=0`, the Ingress is not getting removed.
