@@ -6,6 +6,8 @@
 
 ----
 
+## [Templates](./kubernetes-Templates/README.md)
+
 ## Issue 1: Ingress not getting removed
 Even after running the command `kubectl delete ingress <ingress_name> --force --grace-period=0`, the Ingress is not getting removed.
 
