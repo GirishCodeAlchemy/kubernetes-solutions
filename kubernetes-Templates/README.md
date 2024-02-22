@@ -39,7 +39,26 @@ Define a Network Policy: Create a Network Policy manifest file specifying the de
 <details>
   <summary>Click to expand/collapse</summary>
 
-### 1.
+### 1. Create the dependency deployment
+using a side-car (initContainer), which is just another container in the same pod thats run first, and when it's complete, kubernetes automatically starts the [main] container.
+
+``` yaml
+initContainers: # Sidecar container
+- name: wait-for-main-app
+  image: busybox
+  command: ['sh', '-c', 'until wget -qO- main-application:8080/healthz; do sleep 5; done']
+containers:
+- name: main-app
+```
+using `netcat` to check for open ports
+```yaml
+initContainers:
+- name: wait-for-services
+  image: busybox
+  command: ["/bin/sh","-c"]
+  args: ["until echo 'Waiting for postgres...' && nc -vz -w 2 postgres 5432 && echo 'Waiting for redis...' && nc -vz -w 2 redis 9000; do echo 'Looping forever...'; sleep 2; done;"]
+```
+[Sample Code](./Deployment/create_dependency_deployment.yml)
 
 </details>
 

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: main-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: main-application
+  template:
+    metadata:
+      labels:
+        app: main-application
+    spec:
+      containers:
+      - name: main-container
+        image: main-application-image:latest
+        ports:
+        - containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dependent-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dependent-application
+  template:
+    metadata:
+      labels:
+        app: dependent-application
+    spec:
+      initContainers: # Sidecar container
+      - name: wait-for-main-app
+        image: busybox
+        command: ['sh', '-c', 'until wget -qO- main-application:8080/healthz; do sleep 5; done']
+      containers:
+      - name: dependent-container
+        image: dependent-application-image:latest
+        ports:
+        - containerPort: 8080
