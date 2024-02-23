@@ -40,10 +40,10 @@ Define a Network Policy: Create a Network Policy manifest file specifying the de
   <summary>Click to expand/collapse</summary>
 
 ### 1. Create the dependency deployment
-using a side-car (initContainer), which is just another container in the same pod thats run first, and when it's complete, kubernetes automatically starts the [main] container.
+using a initContainer, which is just another container in the same pod thats run first, and when it's complete, kubernetes automatically starts the [main] container.
 
 ``` yaml
-initContainers: # Sidecar container
+initContainers:
 - name: wait-for-main-app
   image: busybox
   command: ['sh', '-c', 'until wget -qO- main-application:8080/healthz; do sleep 5; done']
@@ -59,6 +59,12 @@ initContainers:
   args: ["until echo 'Waiting for postgres...' && nc -vz -w 2 postgres 5432 && echo 'Waiting for redis...' && nc -vz -w 2 redis 9000; do echo 'Looping forever...'; sleep 2; done;"]
 ```
 [Sample Code](./Deployment/create_dependency_deployment.yml)
+
+### 2. Sidecar container
+
+Sidecar containers are auxiliary containers that run alongside the main application container within the same Kubernetes Pod. They provide additional functionalities such as logging, monitoring, or handling specific tasks without affecting the primary application
+
+[Sample Code](./Deployment/sidecar_deployment.yml)
 
 </details>
 

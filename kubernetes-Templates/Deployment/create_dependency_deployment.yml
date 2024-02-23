@@ -36,10 +36,11 @@ spec:
       labels:
         app: dependent-application
     spec:
-      initContainers: # Sidecar container
+      initContainers:
       - name: wait-for-main-app
-        image: busybox
+        image: busybox:latest
         command: ['sh', '-c', 'until wget -qO- main-application:8080/healthz; do sleep 5; done']
+        restartPolicy: Always #kubernetes > 1.28 set to Always for init container to give sidecar functionality
       containers:
       - name: dependent-container
         image: dependent-application-image:latest

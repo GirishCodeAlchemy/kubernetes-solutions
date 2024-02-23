@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dependent-application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dependent-application
+  template:
+    metadata:
+      labels:
+        app: dependent-application
+    spec:
+      initContainers:
+      - name: log-sender
+        image: busybox:latest
+        command: ['tail', '-f', '/var/log/nginxaccess.log']
+        restartPolicy: Always #kubernetes > 1.28 set to Always for init container to give sidecar functionality
+        volumeMounts:
+        - name: app-logs
+          mountPath: /var/log/nginx
+      containers:
+      - name: main-application
+        image: nginx:latest
+        command: ["nginx", "-g", "daemon off;"]
+        volumeMounts:
+        - name: app-logs
+          mountPath: /var/log/nginx
+        resources:
+            requests:
+              memory: "8Mi"
+              cpu: "2m"
+            limits:
+              memory: "32Mi"
+              cpu: "32m"
+      volumes:
+      - name: app-logs
+        emptyDir: {}
