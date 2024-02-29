@@ -40,24 +40,36 @@ Define a Network Policy: Create a Network Policy manifest file specifying the de
   <summary>Click to expand/collapse</summary>
 
 ### 1. Create the dependency deployment
+
 using a initContainer, which is just another container in the same pod thats run first, and when it's complete, kubernetes automatically starts the [main] container.
 
-``` yaml
-initContainers:
-- name: wait-for-main-app
-  image: busybox
-  command: ['sh', '-c', 'until wget -qO- main-application:8080/healthz; do sleep 5; done']
-containers:
-- name: main-app
-```
-using `netcat` to check for open ports
 ```yaml
 initContainers:
-- name: wait-for-services
-  image: busybox
-  command: ["/bin/sh","-c"]
-  args: ["until echo 'Waiting for postgres...' && nc -vz -w 2 postgres 5432 && echo 'Waiting for redis...' && nc -vz -w 2 redis 9000; do echo 'Looping forever...'; sleep 2; done;"]
+  - name: wait-for-main-app
+    image: busybox
+    command:
+      [
+        "sh",
+        "-c",
+        "until wget -qO- main-application:8080/healthz; do sleep 5; done",
+      ]
+containers:
+  - name: main-app
 ```
+
+using `netcat` to check for open ports
+
+```yaml
+initContainers:
+  - name: wait-for-services
+    image: busybox
+    command: ["/bin/sh", "-c"]
+    args:
+      [
+        "until echo 'Waiting for postgres...' && nc -vz -w 2 postgres 5432 && echo 'Waiting for redis...' && nc -vz -w 2 redis 9000; do echo 'Looping forever...'; sleep 2; done;",
+      ]
+```
+
 [Sample Code](./Deployment/create_dependency_deployment.yml)
 
 ### 2. Sidecar container
@@ -73,7 +85,32 @@ Sidecar containers are auxiliary containers that run alongside the main applicat
 <details>
   <summary>Click to expand/collapse</summary>
 
-### 1.
+### 1. Gateway APi Service
+
+Gateway API is an official Kubernetes project focused on L4 and L7 routing in Kubernetes. This project represents the next generation of Kubernetes Ingress, Load Balancing, and Service Mesh APIs. From the outset, it has been designed to be generic, expressive, and role-oriented.
+![gatewayservice](https://gateway-api.sigs.k8s.io/images/resource-model.png)
+
+![sharedgw](https://gateway-api.sigs.k8s.io/images/gateway-route-binding.png)
+
+#### How it Works¶
+
+The following is required for a Route to be attached to a Gateway:
+
+The Route needs an entry in its parentRefs field referencing the Gateway.
+At least one listener on the Gateway needs to allow this attachment.
+![flow](https://gateway-api.sigs.k8s.io/images/schema-uml.svg)
+
+Gateway API offers a more advanced and flexible approach to managing ingress and egress traffic within Kubernetes clusters, while Ingress provides a simpler and more basic method for routing external traffic to services. Gateway API is intended to replace Ingress and provide a standardized way to manage networking resources in Kubernetes environments.
+
+[Sample Code](./Services/gateway_api_service.yml)
+
+### 2. Service Internal Traffic policy
+
+The Service Internal Traffic Policy in Kubernetes is primarily used to enhance network security and control the flow of traffic within the cluster
+
+Isolation of Internal Services: In a microservices architecture, different services may communicate with each other within the cluster. By setting the Service Internal Traffic Policy to "Local", you can ensure that internal services are only accessible via their ClusterIP, limiting direct access via NodePort and enhancing network segmentation.
+
+[sample code](./Services/service_internal_traffic_policy.yml)
 
 </details>
 
