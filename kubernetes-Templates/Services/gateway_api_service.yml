@@ -1,0 +1,40 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: my-route
+  namespace: gateway-api-example-ns2
+spec:
+  parentRefs:
+  - kind: Gateway
+    name: foo-gateway
+    namespace: gateway-api-example-ns1
+  rules:
+  - backendRefs:
+    - name: foo-svc
+      port: 8080
+---
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: foo-gateway
+  namespace: gateway-api-example-ns1
+spec:
+  gatewayClassName: foo-lb
+  listeners:
+  - name: prod-web
+    port: 80
+    protocol: HTTP
+    allowedRoutes:
+      kinds:
+      - kind: HTTPRoute
+      namespaces:
+        from: Selector
+        selector:
+          matchLabels:
+            # This label is added automatically as of K8s 1.22
+            # to all namespaces
+            kubernetes.io/metadata.name: gateway-api-example-ns2
+
+            # For a more permissive example, the below Gateway will allow all HTTPRoute resources to attach from Namespaces with the "expose-apps: true" label.
+            # expose-apps: "true"
