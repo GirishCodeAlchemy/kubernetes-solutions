@@ -97,3 +97,10 @@ kubectl scale deployments <deployment-name> --replicas=<new-replicas>
 kubectl scale statefulsets <stateful-set-name> --replicas=<new-replicas>
 ```
 
+## Issue 8: Sort the pods based on the creation timestamp
+
+>#### Solution:
+
+```bash
+kubectl get po -A --sort-by=.metadata.creationTimestamp
+```
