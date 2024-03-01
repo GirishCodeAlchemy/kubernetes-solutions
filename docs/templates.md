@@ -2,9 +2,6 @@
 
 ## 1. Network Templates
 
-<details>
-  <summary>Click to expand/collapse</summary>
-
 ### 1. Allow/Deny all ingress traffic
 
 - If you want to allow all incoming connections to all pods in a namespace, you can create a policy that explicitly allows that.
@@ -32,12 +29,7 @@ Define a Network Policy: Create a Network Policy manifest file specifying the de
 
 [Sample Code](../kubernetes-Templates/Network/restrict_pods_based_on_ip_address.yml)
 
-</details>
-
 ## 2. Deployment Templates
-
-<details>
-  <summary>Click to expand/collapse</summary>
 
 ### 1. Create the dependency deployment
 
@@ -78,14 +70,9 @@ Sidecar containers are auxiliary containers that run alongside the main applicat
 
 [Sample Code](../kubernetes-Templates/Deployment/sidecar_deployment.yml)
 
-</details>
-
 ## 3. Service Templates
 
 ### 3. Service Templates
-
-<details>
-  <summary>Click to expand/collapse</summary>
 
 #### 1. Gateway API Service
 
@@ -108,7 +95,11 @@ Gateway API offers a more advanced and flexible approach to managing ingress and
 
 [Sample Code](../kubernetes-Templates/Services/gateway_api_service.yml)
 
-<iframe src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/blob/main/kubernetes-Templates/Services/gateway_api_service.yml" frameborder="0" width="100%" height="400"></iframe>
+<details>
+  <summary>Click to expand/collapse</summary>
+<iframe src="https://raw.githubusercontent.com/GirishCodeAlchemy/kubernetes-solutions/main/kubernetes-Templates/Services/gateway_api_service.yml" frameborder="0" width="100%" height="400"></iframe>
+
+</details>
 
 ### 2. Service Internal Traffic policy
 
@@ -118,12 +109,7 @@ Isolation of Internal Services: In a microservices architecture, different servi
 
 [Sample Code](../kubernetes-Templates/Services/service_internal_traffic_policy.yml)
 
-</details>
-
 ## 4. Resource Quota Templates
-
-<details>
-  <summary>Click to expand/collapse</summary>
 
 ### 1. ResourceQuota
 
@@ -132,8 +118,6 @@ The ResourceQuota kind is used to define these limits and enforce them within a 
 > For example, a resource quota can be set to limit the total amount of CPU and memory that can be consumed by all pods within a namespace. This helps prevent one application from monopolizing cluster resources and affecting the performance of other applications running in the same namespace. Similarly, resource quotas can limit the number of pods or services that can be created to avoid overloading the cluster.
 
 [Sample Code](../kubernetes-Templates/ResourceQuota/resourcequota.yaml)
-
-</details>
 
 ## 5. Ingress Templates
 
