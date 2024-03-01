@@ -82,32 +82,33 @@ Sidecar containers are auxiliary containers that run alongside the main applicat
 
 ## 3. Service Templates
 
+### 3. Service Templates
+
 <details>
   <summary>Click to expand/collapse</summary>
 
-### 1. Gateway APi Service
+#### 1. Gateway API Service
 
 Gateway API is an official Kubernetes project focused on L4 and L7 routing in Kubernetes. This project represents the next generation of Kubernetes Ingress, Load Balancing, and Service Mesh APIs. From the outset, it has been designed to be generic, expressive, and role-oriented.
+
 ![gatewayservice](https://gateway-api.sigs.k8s.io/images/resource-model.png)
 
 ![sharedgw](https://gateway-api.sigs.k8s.io/images/gateway-route-binding.png)
 
-#### How it Works¶
+##### How it Works
 
 The following is required for a Route to be attached to a Gateway:
 
-The Route needs an entry in its parentRefs field referencing the Gateway.
-At least one listener on the Gateway needs to allow this attachment.
+- The Route needs an entry in its parentRefs field referencing the Gateway.
+- At least one listener on the Gateway needs to allow this attachment.
+
 ![flow](https://gateway-api.sigs.k8s.io/images/schema-uml.svg)
 
 Gateway API offers a more advanced and flexible approach to managing ingress and egress traffic within Kubernetes clusters, while Ingress provides a simpler and more basic method for routing external traffic to services. Gateway API is intended to replace Ingress and provide a standardized way to manage networking resources in Kubernetes environments.
 
 [Sample Code](../kubernetes-Templates/Services/gateway_api_service.yml)
 
-<details>
-  <summary>Click to view Sample Code</summary>
-  <iframe src="../kubernetes-Templates/Services/gateway_api_service.yml" frameborder="0" width="100%" height="400"></iframe>
-</details>
+<iframe src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/blob/main/kubernetes-Templates/Services/gateway_api_service.yml" frameborder="0" width="100%" height="400"></iframe>
 
 ### 2. Service Internal Traffic policy
 
