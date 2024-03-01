@@ -106,7 +106,7 @@ Gateway API offers a more advanced and flexible approach to managing ingress and
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./Services/gateway_api_service.yml" frameborder="0" width="100%" height="400"></iframe>
+  <iframe src="../kubernetes-Templates/Services/gateway_api_service.yml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ### 2. Service Internal Traffic policy
