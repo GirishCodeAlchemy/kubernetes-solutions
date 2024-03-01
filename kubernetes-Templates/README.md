@@ -135,7 +135,7 @@ Isolation of Internal Services: In a microservices architecture, different servi
   <iframe src="./Services/service_internal_traffic_policy.yml" frameborder="0" width="100%" height="300"></iframe>
 </details>
 
-## 4. Resource Quota Templates
+## 4. Advanced Template Details
 
 ### 1. ResourceQuota
 
@@ -143,11 +143,24 @@ The ResourceQuota kind is used to define these limits and enforce them within a 
 
 > For example, a resource quota can be set to limit the total amount of CPU and memory that can be consumed by all pods within a namespace. This helps prevent one application from monopolizing cluster resources and affecting the performance of other applications running in the same namespace. Similarly, resource quotas can limit the number of pods or services that can be created to avoid overloading the cluster.
 
-[sample code](./ResourceQuota/resourcequota.yaml)
+[sample code](./AdvanceDetails/resourcequota.yaml)
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./ResourceQuota/resourcequota.yaml" frameborder="0" width="100%" height="500"></iframe>
+  <iframe src="./AdvanceDetails/resourcequota.yaml" frameborder="0" width="100%" height="500"></iframe>
+</details>
+
+### 2. Operator Groups
+
+An OperatorGroup in Kubernetes is a resource used to manage the deployment and scaling of operators within a cluster. It allows administrators to specify which namespaces an operator should be deployed to and which RBAC (Role-Based Access Control) rules should be applied to the operator.
+
+> The primary use of OperatorGroup is to define a logical grouping of namespaces where a particular operator should be deployed. This helps in organizing and managing operators across different namespaces within a Kubernetes cluster. By associating an operator with an OperatorGroup, you can control which namespaces the operator has access to and which resources it can manage.
+
+[sample code](./AdvanceDetails/operator_group.yml)
+
+<details>
+  <summary>Click to view Sample Code</summary>
+  <iframe src="./AdvanceDetails/operator_group.yml" frameborder="0" width="100%" height="500"></iframe>
 </details>
 
 ## 5. Ingress Templates

@@ -1,0 +1,15 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: example-operatorgroup
+  namespace: my-namespace
+spec:
+  targetNamespaces:
+  - namespace1
+  - namespace2
+  - namespace3
+  - ...
+  # Add other namespaces where the operator should be deployed
+  # RBAC:
+  serviceAccount: example-operator-sa
+  # Add custom RBAC rules for the operator within the specified namespaces
