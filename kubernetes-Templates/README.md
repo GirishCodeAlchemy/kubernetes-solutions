@@ -104,6 +104,16 @@ Gateway API offers a more advanced and flexible approach to managing ingress and
 
 [Sample Code](./Services/gateway_api_service.yml)
 
+<details>
+  <summary>Click to view Sample Code</summary>
+  <iframe src="./Services/gateway_api_service.yml" frameborder="0" width="100%" height="300"></iframe>
+</details>
+
+<details>
+  <summary>Click to view Sample Code</summary>
+  <iframe src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/blob/main/kubernetes-Templates/Services/gateway_api_service.yml" frameborder="0" width="100%" height="300"></iframe>
+</details>
+
 ### 2. Service Internal Traffic policy
 
 The Service Internal Traffic Policy in Kubernetes is primarily used to enhance network security and control the flow of traffic within the cluster
@@ -114,7 +124,22 @@ Isolation of Internal Services: In a microservices architecture, different servi
 
 </details>
 
-## 4. Ingress Templates
+## 4. Resource Quota Templates
+
+<details>
+  <summary>Click to expand/collapse</summary>
+
+### 1. ResourceQuota
+
+The ResourceQuota kind is used to define these limits and enforce them within a Kubernetes cluster. By setting resource quotas, administrators can prevent resource exhaustion and ensure fair resource allocation among different users or applications within the cluster.
+
+> For example, a resource quota can be set to limit the total amount of CPU and memory that can be consumed by all pods within a namespace. This helps prevent one application from monopolizing cluster resources and affecting the performance of other applications running in the same namespace. Similarly, resource quotas can limit the number of pods or services that can be created to avoid overloading the cluster.
+
+[sample code](./ResourceQuota/resourcequota.yaml)
+
+</details>
+
+## 5. Ingress Templates
 
 <details>
   <summary>Click to expand/collapse</summary>
@@ -123,7 +148,7 @@ Isolation of Internal Services: In a microservices architecture, different servi
 
 </details>
 
-## 5. Persistent Volume Templates
+## 6. Persistent Volume Templates
 
 <details>
   <summary>Click to expand/collapse</summary>
