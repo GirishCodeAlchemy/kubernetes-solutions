@@ -12,7 +12,7 @@
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./Network/ingress.yml" frameborder="0" width="100%" height="100%"></iframe>
+  <iframe src="./Network/ingress.yml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ### 2. Allow/Deny all egress traffic
@@ -25,7 +25,7 @@
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./Network/egress.yml" frameborder="0" width="100%" height="100%"></iframe>
+  <iframe src="./Network/egress.yml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ### 3. To restrict access to Kubernetes pods based on IP addresses
@@ -41,7 +41,7 @@ Define a Network Policy: Create a Network Policy manifest file specifying the de
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./Network/restrict_pods_based_on_ip_address.yml" frameborder="0" width="100%" height="100%"></iframe>
+  <iframe src="./Network/restrict_pods_based_on_ip_address.yml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ## 2. Deployment Templates
@@ -81,7 +81,7 @@ initContainers:
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./Deployment/create_dependency_deployment.yml" frameborder="0" width="100%" height="100%"></iframe>
+  <iframe src="./Deployment/create_dependency_deployment.yml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ### 2. Sidecar container
@@ -92,7 +92,7 @@ Sidecar containers are auxiliary containers that run alongside the main applicat
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./Deployment/sidecar_deployment.yml" frameborder="0" width="100%" height="100%"></iframe>
+  <iframe src="./Deployment/sidecar_deployment.yml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ## 3. Service Templates
@@ -119,7 +119,7 @@ Gateway API offers a more advanced and flexible approach to managing ingress and
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./Services/gateway_api_service.yml" frameborder="0" width="100%" height="100%"></iframe>
+  <iframe src="./Services/gateway_api_service.yml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ### 2. Service Internal Traffic policy
@@ -132,7 +132,7 @@ Isolation of Internal Services: In a microservices architecture, different servi
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./Services/service_internal_traffic_policy.yml" frameborder="0" width="100%" height="100%"></iframe>
+  <iframe src="./Services/service_internal_traffic_policy.yml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ## 4. Resource Quota Templates
@@ -147,7 +147,7 @@ The ResourceQuota kind is used to define these limits and enforce them within a 
 
 <details>
   <summary>Click to view Sample Code</summary>
-  <iframe src="./ResourceQuota/resourcequota.yaml" frameborder="0" width="100%" height="100%"></iframe>
+  <iframe src="./ResourceQuota/resourcequota.yaml" frameborder="0" width="100%" height="400"></iframe>
 </details>
 
 ## 5. Ingress Templates
