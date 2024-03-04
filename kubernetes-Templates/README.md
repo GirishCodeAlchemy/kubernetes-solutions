@@ -95,6 +95,30 @@ Sidecar containers are auxiliary containers that run alongside the main applicat
   <iframe src="./Deployment/sidecar_deployment.yml" frameborder="0" width="100%" height="550"></iframe>
 </details>
 
+### 3. Graceful Pod Shutdown with PreStop Hooks
+
+PreStop hooks allow for the execution of specific commands or scripts inside a pod just before it gets terminated. This capability is crucial for ensuring that applications shut down gracefully, saving state where necessary, or performing clean-up tasks to avoid data corruption and ensure a smooth restart.
+
+**When to Use:** Implement PreStop hooks in environments where service continuity is critical, and you need to ensure zero or minimal downtime during deployments, scaling, or pod recycling.
+
+This configuration ensures that the nginx server has 30 seconds to finish serving current requests before shutting down.
+
+```yml
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+      lifecycle:
+        preStop:
+          exec:
+            command: ["/bin/sh", "-c", "sleep 30 && nginx -s quit"]
+```
+
+<details>
+  <summary>Click to view Sample Code</summary>
+  <iframe src="./Deployment/graceful_pod_shutdown.yml" frameborder="0" width="100%" height="550"></iframe>
+</details>
+
 ## 3. Service Templates
 
 #### 1. Gateway API Service
@@ -162,6 +186,36 @@ An OperatorGroup in Kubernetes is a resource used to manage the deployment and s
   <summary>Click to view Sample Code</summary>
   <iframe src="./AdvanceDetails/operator_group.yml" frameborder="0" width="100%" height="500"></iframe>
 </details>
+
+### 3. Horizontal Pod Autoscaling Based on Custom Metrics
+
+Horizontal Pod Autoscaler (HPA) can scale your deployments based on custom metrics, not just standard CPU and memory usage. This is particularly useful for applications with scaling needs tied to specific business metrics or performance indicators, such as queue length, request latency, or custom application metrics
+
+<iframe src="./AdvanceDetails/horizontal_pod_autoscaling_custom_metrics.yml" frameborder="0" width="100%" height="400"></iframe>
+
+### 4. Node Affinity for Workload-Specific Scheduling
+
+Node affinity allows you to specify rules that limit which nodes your pod can be scheduled on, based on labels on nodes. This is useful for directing workloads to nodes with specific hardware (like GPUs), ensuring data locality, or adhering to compliance and data sovereignty requirements.
+
+**When to Use:** Use node affinity when your applications require specific node capabilities or when you need to control the distribution of workloads for performance optimization, legal, or regulatory reasons.
+
+<iframe src="./AdvanceDetails/node_affinity_workload_schedule.yml" frameborder="0" width="100%" height="400"></iframe>
+
+### 5. Pod Priority and Preemption for Critical Workloads
+
+Kubernetes allows you to assign priorities to pods, and higher priority pods can preempt (evict) lower priority pods if necessary. This ensures that critical workloads have the resources they need, even in a highly congested cluster.
+
+**When to Use:** Use pod priority and preemption for applications that are critical to your business operations, especially when running in clusters where resource contention is common.
+
+<iframe src="./AdvanceDetails/pod_priority_preemption_for_critical_workload.yml" frameborder="0" width="100%" height="500"></iframe>
+
+### 6. Custom Resource Definitions (CRDs) for Extending Kubernetes
+
+CRDs allow you to extend Kubernetes with your own API objects, enabling the creation of custom resources that operate like native Kubernetes objects. This is powerful for adding domain-specific functionality to your clusters, facilitating custom operations, and integrating with external systems.
+
+**When to Use:** CRDs are ideal for extending Kubernetes functionality to meet the specific needs of your applications or services, such as introducing domain-specific resource types or integrating with external services and APIs.
+
+<iframe src="./AdvanceDetails/custom_resource_definations.yml" frameborder="0" width="100%" height="500"></iframe>
 
 ## 5. Ingress Templates
 
