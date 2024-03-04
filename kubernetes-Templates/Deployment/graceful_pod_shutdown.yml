@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: graceful-shutdown-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: graceful-shutdown
+  template:
+    metadata:
+      labels:
+        app: graceful-shutdown
+    spec:
+      containers:
+      - name: graceful-shutdown-container
+        image: nginx:latest
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 30 && nginx -s quit"]
