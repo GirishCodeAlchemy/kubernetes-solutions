@@ -8,7 +8,7 @@
 
 ## Kubernetes Architecture
 
-![](./architecture-diagram.gif)
+![](./assets/architecture-diagram.gif)
 
 ---
 
