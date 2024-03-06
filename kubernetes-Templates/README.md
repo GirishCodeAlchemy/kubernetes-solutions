@@ -8,12 +8,7 @@
 
 - similarly selects all pods but does not allow any ingress traffic to those pods.
 
-[Sample Code](./Network/ingress.yml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./Network/ingress.yml" frameborder="0" width="100%" height="400"></iframe>
-</details>
 
 ### 2. Allow/Deny all egress traffic
 
@@ -21,12 +16,7 @@
 
 - Similarly selects all pods but does not allow any egress traffic from those pods.
 
-[Sample Code](./Network/egress.yml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./Network/egress.yml" frameborder="0" width="100%" height="400"></iframe>
-</details>
 
 ### 3. To restrict access to Kubernetes pods based on IP addresses
 
@@ -37,12 +27,7 @@ Define a Network Policy: Create a Network Policy manifest file specifying the de
 
 `except`: Optionally, you can specify exceptions to the allowed CIDR range.
 
-[Sample Code](./Network/restrict_pods_based_on_ip_address.yml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./Network/restrict_pods_based_on_ip_address.yml" frameborder="0" width="100%" height="400"></iframe>
-</details>
 
 ## 2. Deployment Templates
 
@@ -77,23 +62,13 @@ initContainers:
       ]
 ```
 
-[Sample Code](./Deployment/create_dependency_deployment.yml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./Deployment/create_dependency_deployment.yml" frameborder="0" width="100%" height="700"></iframe>
-</details>
 
 ### 2. Sidecar container
 
 Sidecar containers are auxiliary containers that run alongside the main application container within the same Kubernetes Pod. They provide additional functionalities such as logging, monitoring, or handling specific tasks without affecting the primary application
 
-[Sample Code](./Deployment/sidecar_deployment.yml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./Deployment/sidecar_deployment.yml" frameborder="0" width="100%" height="550"></iframe>
-</details>
 
 ### 3. Graceful Pod Shutdown with PreStop Hooks
 
@@ -114,10 +89,7 @@ spec:
             command: ["/bin/sh", "-c", "sleep 30 && nginx -s quit"]
 ```
 
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./Deployment/graceful_pod_shutdown.yml" frameborder="0" width="100%" height="550"></iframe>
-</details>
 
 ## 3. Service Templates
 
@@ -139,12 +111,7 @@ The following is required for a Route to be attached to a Gateway:
 
 Gateway API offers a more advanced and flexible approach to managing ingress and egress traffic within Kubernetes clusters, while Ingress provides a simpler and more basic method for routing external traffic to services. Gateway API is intended to replace Ingress and provide a standardized way to manage networking resources in Kubernetes environments.
 
-[Sample Code](./Services/gateway_api_service.yml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./Services/gateway_api_service.yml" frameborder="0" width="100%" height="550"></iframe>
-</details>
 
 ### 2. Service Internal Traffic policy
 
@@ -152,12 +119,7 @@ The Service Internal Traffic Policy in Kubernetes is primarily used to enhance n
 
 Isolation of Internal Services: In a microservices architecture, different services may communicate with each other within the cluster. By setting the Service Internal Traffic Policy to "Local", you can ensure that internal services are only accessible via their ClusterIP, limiting direct access via NodePort and enhancing network segmentation.
 
-[sample code](./Services/service_internal_traffic_policy.yml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./Services/service_internal_traffic_policy.yml" frameborder="0" width="100%" height="300"></iframe>
-</details>
 
 ## 4. Advanced Template Details
 
@@ -167,12 +129,7 @@ The ResourceQuota kind is used to define these limits and enforce them within a 
 
 > For example, a resource quota can be set to limit the total amount of CPU and memory that can be consumed by all pods within a namespace. This helps prevent one application from monopolizing cluster resources and affecting the performance of other applications running in the same namespace. Similarly, resource quotas can limit the number of pods or services that can be created to avoid overloading the cluster.
 
-[sample code](./AdvanceDetails/resourcequota.yaml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./AdvanceDetails/resourcequota.yaml" frameborder="0" width="100%" height="500"></iframe>
-</details>
 
 ### 2. Operator Groups
 
@@ -180,12 +137,7 @@ An OperatorGroup in Kubernetes is a resource used to manage the deployment and s
 
 > The primary use of OperatorGroup is to define a logical grouping of namespaces where a particular operator should be deployed. This helps in organizing and managing operators across different namespaces within a Kubernetes cluster. By associating an operator with an OperatorGroup, you can control which namespaces the operator has access to and which resources it can manage.
 
-[sample code](./AdvanceDetails/operator_group.yml)
-
-<details>
-  <summary>Click to view Sample Code</summary>
   <iframe src="./AdvanceDetails/operator_group.yml" frameborder="0" width="100%" height="500"></iframe>
-</details>
 
 ### 3. Horizontal Pod Autoscaling
 
