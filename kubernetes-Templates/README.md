@@ -187,11 +187,19 @@ An OperatorGroup in Kubernetes is a resource used to manage the deployment and s
   <iframe src="./AdvanceDetails/operator_group.yml" frameborder="0" width="100%" height="500"></iframe>
 </details>
 
-### 3. Horizontal Pod Autoscaling Based on Custom Metrics
+### 3. Horizontal Pod Autoscaling
+
+#### Based on Custom Metrics:
 
 Horizontal Pod Autoscaler (HPA) can scale your deployments based on custom metrics, not just standard CPU and memory usage. This is particularly useful for applications with scaling needs tied to specific business metrics or performance indicators, such as queue length, request latency, or custom application metrics
 
 <iframe src="./AdvanceDetails/horizontal_pod_autoscaling_custom_metrics.yml" frameborder="0" width="100%" height="400"></iframe>
+
+#### Based on System Metrics:
+
+Horizontal Pod Autoscaler for an application, ensuring that it scales out when the CPU utilization goes above 50% and scales in when the usage drops, between a minimum of 3 and a maximum of 10 replicas.
+
+<iframe src="./AdvanceDetails/horizontal_pod_autoscaler.yml" frameborder="0" width="100%" height="400"></iframe>
 
 ### 4. Node Affinity for Workload-Specific Scheduling
 
@@ -215,7 +223,31 @@ CRDs allow you to extend Kubernetes with your own API objects, enabling the crea
 
 **When to Use:** CRDs are ideal for extending Kubernetes functionality to meet the specific needs of your applications or services, such as introducing domain-specific resource types or integrating with external services and APIs.
 
+Then a new namespaced RESTful API endpoint is created at:
+
+`/apis/stable.example.com/v1/namespaces/*/crontabs/...`
+
+This endpoint URL can then be used to create and manage custom objects. The kind of these objects will be CronTab from the spec of the CustomResourceDefinition object you created above.
+
 <iframe src="./AdvanceDetails/custom_resource_definations.yml" frameborder="0" width="100%" height="500"></iframe>
+
+```yml
+apiVersion: "stable.example.com/v1"
+kind: CronTab
+metadata:
+  name: my-new-cron-object
+spec:
+  cronSpec: "* * * * */5"
+  image: my-awesome-cron-image
+```
+
+`kubectl get ct -o yaml`
+
+### 7. Pod Disruption Budgets
+
+Pod Disruption Budgets (PDBs) help ensure that a minimum number of pods are available during voluntary disruptions, such as node maintenance. This ensures high availability without over-provisioning resources.
+
+<iframe src="./AdvanceDetails/pod_disruption_budget.yml" frameborder="0" width="100%" height="500"></iframe>
 
 ## 5. Ingress Templates
 
@@ -234,3 +266,9 @@ CRDs allow you to extend Kubernetes with your own API objects, enabling the crea
 ### 1.
 
 </details>
+
+## 7. RBAC
+
+RBAC enforces fine-grained access control policies to Kubernetes resources, using roles and role bindings to restrict permissions within the cluster.
+
+<iframe src="./Security/rbac_template.yml" frameborder="0" width="100%" height="500"></iframe>
