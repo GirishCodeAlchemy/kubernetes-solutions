@@ -6,6 +6,8 @@
 
 ---
 
+![](./architecture-diagram.gif)
+
 ## [🕸️ Kubernetes Sample Templates 🚀](./kubernetes-Templates/README.md)
 
 ## Issue 1: Ingress not getting removed
