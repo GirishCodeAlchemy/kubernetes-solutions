@@ -24,3 +24,9 @@ k get pod -o json | jq -r '.items[] | .metadata.name + " - IP: " + .status.podIP
 k exec -ti $(k get pods -l app=datadogagent -o jsonpath='{.items[0].metadata.name}') -- agent status
 
 2) helm upgrade datadogagent --set datadog.apiKey=$DD_API_KEY --set datadog.appKey=$DD_APP_KEY -f values.yaml datadog/datadog
+
+#### check the configcheck of agent
+3) kubectl exec -ti $(k get pods -l app=datadogagent --field-selector=spec.nodeName=kubernetes -o jsonpath='{.items[0].metadata.name}') -- agent configcheck
+
+### to list the containers
+4) kubectl get pods -o=jsonpath='{range .items[*]}{.metadata.name}{"\t"}{range .spec.containers[*]}{.name}{"\n"}{end}{end}'

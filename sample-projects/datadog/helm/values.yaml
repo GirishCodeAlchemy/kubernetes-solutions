@@ -107,7 +107,7 @@ datadog:
     apparmor: unconfined
 
 clusterAgent:
-  enabled: false
+  enabled: true
   image:
     repository: datadog/cluster-agent
     tag: 1.20.0
