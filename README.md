@@ -10,6 +10,7 @@
 
 ![](./assets/architecture-diagram.gif)
 
+![](./assets/KubernetesDetails.png)
 ---
 
 ## [🕸️ Kubernetes Sample Templates 🚀](./kubernetes-Templates/README.md)
