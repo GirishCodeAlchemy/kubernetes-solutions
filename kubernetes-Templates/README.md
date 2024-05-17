@@ -201,6 +201,38 @@ Pod Disruption Budgets (PDBs) help ensure that a minimum number of pods are avai
 
 <iframe src="./AdvanceDetails/pod_disruption_budget.yml" frameborder="0" width="100%" height="500"></iframe>
 
+### 8. Cluster Autoscaler
+
+On AWS, Cluster Autoscaler utilizes Amazon EC2 Auto Scaling Groups to manage node groups. Cluster Autoscaler typically runs as a Deployment in your cluster.
+
+<iframe src="./AdvanceDetails/cluster-autoscaler.yml" frameborder="0" width="100%" height="1000"></iframe>
+
+Using Mixed Instances Policies and Spot Instances
+
+```yaml
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: beta.kubernetes.io/instance-type
+                operator: In
+                values:
+                  - r5.2xlarge
+                  - r5d.2xlarge
+                  - r5a.2xlarge
+                  - r5ad.2xlarge
+                  - r5n.2xlarge
+                  - r5dn.2xlarge
+                  - r4.2xlarge
+                  - i3.2xlarge
+```
+
+Ref:
+OIDC and roles : https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/CA_with_AWS_IAM_OIDC.md
+Autoscaler Document : https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md
+
 ## 5. Ingress Templates
 
 <details>
