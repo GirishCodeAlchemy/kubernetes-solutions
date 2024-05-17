@@ -205,7 +205,7 @@ Pod Disruption Budgets (PDBs) help ensure that a minimum number of pods are avai
 
 On AWS, Cluster Autoscaler utilizes Amazon EC2 Auto Scaling Groups to manage node groups. Cluster Autoscaler typically runs as a Deployment in your cluster.
 
-<iframe src="./AdvanceDetails/cluster-autoscaler.yml" frameborder="0" width="100%" height="1000"></iframe>
+<iframe src="./AdvanceDetails/cluster-autoscaler.yaml" frameborder="0" width="100%" height="1000"></iframe>
 
 Using Mixed Instances Policies and Spot Instances
 
@@ -229,9 +229,39 @@ spec:
                   - i3.2xlarge
 ```
 
+Permission
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "autoscaling:DescribeAutoScalingGroups",
+        "autoscaling:DescribeAutoScalingInstances",
+        "autoscaling:DescribeLaunchConfigurations",
+        "autoscaling:DescribeScalingActivities",
+        "ec2:DescribeInstanceTypes",
+        "ec2:DescribeLaunchTemplateVersions"
+      ],
+      "Resource": ["*"]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "autoscaling:SetDesiredCapacity",
+        "autoscaling:TerminateInstanceInAutoScalingGroup"
+      ],
+      "Resource": ["*"]
+    }
+  ]
+}
+```
+
 Ref:
-OIDC and roles : https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/CA_with_AWS_IAM_OIDC.md
-Autoscaler Document : https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md
+OIDC and roles : [https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/CA_with_AWS_IAM_OIDC.md]()
+Autoscaler Document : [https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md]()
 
 ## 5. Ingress Templates
 
