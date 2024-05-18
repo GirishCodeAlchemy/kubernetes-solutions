@@ -207,7 +207,7 @@ On AWS, Cluster Autoscaler utilizes Amazon EC2 Auto Scaling Groups to manage nod
 
 <iframe src="./AdvanceDetails/cluster-autoscaler.yaml" frameborder="0" width="100%" height="1000"></iframe>
 
-Using Mixed Instances Policies and Spot Instances
+Using Mixed Instances Policies and Spot Instances:
 
 ```yaml
 spec:
@@ -229,7 +229,7 @@ spec:
                   - i3.2xlarge
 ```
 
-Cluster Auto Scaling policy
+Cluster Auto Scaling policy: 
 
 ```json
 {
@@ -263,7 +263,7 @@ Cluster Auto Scaling policy
 }
 ```
 
-IAM role
+IAM role: 
 
 ```json
 {
