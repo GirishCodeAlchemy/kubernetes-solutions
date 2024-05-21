@@ -298,6 +298,32 @@ IAM role
 
 > Autoscaler Document : [https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/cloudprovider/aws/README.md)
 
+### 9. Admission Controller
+
+An admission controller is a piece of code that intercepts requests to the Kubernetes API server prior to persistence of the object, but after the request is authenticated and authorized
+
+#### Why do I need them?
+
+> Several important features of Kubernetes require an admission controller to be enabled in order to properly support the feature. As a result, a Kubernetes API server that is not properly configured with the right set of admission controllers is an incomplete server and will not support all the features you expect.
+
+1. To Enable
+
+```bash
+kube-apiserver --enable-admission-plugins=NamespaceLifecycle,LimitRanger ...
+```
+
+2. To Disable
+
+```bash
+kube-apiserver --disable-admission-plugins=PodNodeSelector,AlwaysDeny ...
+```
+
+3. plugin enabled
+
+```bash
+kube-apiserver -h | grep enable-admission-plugins
+```
+
 ## 5. Ingress Templates
 
 <details>
@@ -320,4 +346,39 @@ IAM role
 
 RBAC enforces fine-grained access control policies to Kubernetes resources, using roles and role bindings to restrict permissions within the cluster.
 
+> If you want to define a role within a namespace, use a Role; if you want to define a role cluster-wide, use a ClusterRole.
+
+> A role binding grants the permissions defined in a role to a user or set of users. It holds a list of subjects (users, groups, or service accounts), and a reference to the role being granted. A RoleBinding grants permissions within a specific namespace whereas a ClusterRoleBinding grants that access cluster-wide.
+
 <iframe src="./Security/rbac_template.yml" frameborder="0" width="100%" height="500"></iframe>
+
+## 8. Annotation
+
+Annotations are key-value pairs that provide additional metadata or information about Kubernetes resources.
+
+- Unlike labels, annotations are not used to identify or select objects, but rather to add non-identifying metadata to objects.
+- Annotations are often used to attach arbitrary configuration or descriptive information to resources, which can be used by tools, controllers, or operators to make decisions or perform actions.
+- Annotations can be added to most Kubernetes resources, including pods, services, deployments, ingress resources, etc.
+- Common use cases for annotations include storing build information, specifying monitoring configurations, adding deployment notes, defining traffic routing rules, etc
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  annotations:
+    my-company.com/build-number: "1234"
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+        - name: my-container
+          image: my-image:latest
+```
