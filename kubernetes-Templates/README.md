@@ -229,7 +229,7 @@ spec:
                   - i3.2xlarge
 ```
 
-Cluster Auto Scaling policy: 
+Cluster Auto Scaling policy:
 
 ```json
 {
@@ -263,7 +263,7 @@ Cluster Auto Scaling policy:
 }
 ```
 
-IAM role: 
+IAM role:
 
 ```json
 {
@@ -351,6 +351,8 @@ RBAC enforces fine-grained access control policies to Kubernetes resources, usin
 > A role binding grants the permissions defined in a role to a user or set of users. It holds a list of subjects (users, groups, or service accounts), and a reference to the role being granted. A RoleBinding grants permissions within a specific namespace whereas a ClusterRoleBinding grants that access cluster-wide.
 
 <iframe src="./Security/rbac_template.yml" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="./Security/cluster_role.yml" frameborder="0" width="100%" height="500"></iframe>
+<iframe src="./Security/cluster_role_binding.yml" frameborder="0" width="100%" height="500"></iframe>
 
 ## 8. Annotation
 
