@@ -1,0 +1,28 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: aws-fsx-csi-driver
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  url: https://kubernetes-sigs.github.io/aws-fsx-csi-driver/
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: aws-fsx-csi-driver
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: aws-fsx-csi-driver
+      sourceRef:
+        kind: HelmRepository
+        name: aws-fsx-csi-driver
+  values:
+    serviceAccount:
+      create: false
+  interval: 1m0s
+  releaseName: aws-fsx-csi-driver
+  targetNamespace: kube-system

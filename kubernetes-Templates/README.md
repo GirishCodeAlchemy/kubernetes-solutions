@@ -384,3 +384,17 @@ spec:
         - name: my-container
           image: my-image:latest
 ```
+
+## 9. CSI Drivers
+
+### 1. fluxcd csi driver
+
+<iframe src="./system/fluxcd_csi_driver.yaml" frameborder="0" width="100%" height="500"></iframe>
+
+### 2. EFS csi driver
+
+<iframe src="./system/efs_csi_driver.yaml" frameborder="0" width="100%" height="500"></iframe>
+
+### 3. EBS csi driver
+
+<iframe src="./system/ebs_csi_driver.yaml" frameborder="0" width="100%" height="500"></iframe>

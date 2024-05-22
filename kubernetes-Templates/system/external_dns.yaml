@@ -1,0 +1,36 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: bitnami
+  namespace: flux-system
+spec:
+  interval: 30m0s
+  url: https://charts.bitnami.com/bitnami
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: external-dns
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: external-dns
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+      version: 4.12.3
+  interval: 30m0s
+  targetNamespace: kube-system
+  values:
+    fullnameOverride: external-dns
+    image:
+      registry: docker.io
+      repository: bitnami/external-dns
+      tag: 0.8.0
+    policy: upsert-only
+    provider: aws
+    rbac:
+      create: true
+

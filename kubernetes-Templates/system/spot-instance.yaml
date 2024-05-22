@@ -1,0 +1,36 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: spotinst-kubernetes-cluster-controller
+  namespace: kube-system
+spec:
+  interval: 1m0s
+  url: https://spotinst.github.io/spotinst-kubernetes-helm-charts
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: spotinst-kubernetes-cluster-controller
+  namespace: kube-system
+spec:
+  chart:
+    spec:
+      chart: spotinst-kubernetes-cluster-controller
+      version: 1.0.88
+      sourceRef:
+        kind: HelmRepository
+        name: spotinst-kubernetes-cluster-controller
+  interval: 1m0s
+  releaseName: spotinst-kubernetes-cluster-controller
+  targetNamespace: kube-system
+  values:
+    spotinst:
+      disableAutoUpdate: false
+      enableCsrApproval: false
+    metrics-server:
+      deployChart: false
+  valuesFrom:
+  - kind: Secret
+    name: spotinst-config
+    valuesKey: spotinst-config

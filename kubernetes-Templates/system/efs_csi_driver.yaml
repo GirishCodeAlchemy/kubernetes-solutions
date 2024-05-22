@@ -1,0 +1,35 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: HelmRepository
+metadata:
+  name: aws-efs-csi-driver
+  namespace: flux-system
+spec:
+  interval: 1m0s
+  url: https://kubernetes-sigs.github.io/aws-efs-csi-driver/
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: aws-efs-csi-driver
+  namespace: flux-system
+spec:
+  chart:
+    spec:
+      chart: aws-efs-csi-driver
+      sourceRef:
+        kind: HelmRepository
+        name: aws-efs-csi-driver
+  interval: 1m0s
+  releaseName: aws-efs-csi-driver
+  targetNamespace: kube-system
+  values:
+    image:
+      repository: public.ecr.aws/efs-csi-driver/aws-efs-csi-driver  # Modify public image to private
+      # repository: <account>.dkr.ecr.eu-west-1.amazonaws.com/eks/aws-efs-csi-driver
+    controller:
+      serviceAccount:
+        name: efs-csi-controller-sa
+        annotations:
+        ## Enable if EKS IAM for SA is used
+          eks.amazonaws.com/role-arn: arn:aws:iam::<account>:role/efs-csi-driver-service-account-role
