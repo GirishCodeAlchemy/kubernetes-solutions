@@ -385,7 +385,7 @@ spec:
           image: my-image:latest
 ```
 
-## 9. CSI Drivers
+## 9. System & Drivers :
 
 ### 1. fluxcd csi driver
 
@@ -398,3 +398,12 @@ spec:
 ### 3. EBS csi driver
 
 <iframe src="./system/ebs_csi_driver.yaml" frameborder="0" width="100%" height="500"></iframe>
+
+### 4. Spot Instance
+
+<iframe src="./system/spot-instance.yaml" frameborder="0" width="100%" height="500"></iframe>
+
+### 5. Fluxcd Driver
+
+<iframe src="./system/fluxcd_csi_driver.yaml" frameborder="0" width="100%" height="500"></iframe>
+
