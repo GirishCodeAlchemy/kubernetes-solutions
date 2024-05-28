@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-cm
+  namespace: test
+data:
+  greeting: |
+    Hello world
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: sample-deployment
+  name: sample-deployment
+  namespace: test
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: sample-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: sample-deployment
+    spec:
+      containers:
+      - image: busybox
+        name: busybox
+        resources: {}
+        env:
+        - name: MY_GREETING
+          valueFrom:
+            configMapKeyRef:
+              key: greeting
+              name: test-cm
+        command: ["sh", "-c"]
+        args:
+        - env;
+          sleep 36000;
+
+

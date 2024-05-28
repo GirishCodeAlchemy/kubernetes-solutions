@@ -91,6 +91,19 @@ spec:
 
   <iframe src="./Deployment/graceful_pod_shutdown.yml" frameborder="0" width="100%" height="550"></iframe>
 
+### 4. Mount the configmap to the deployment environment variable
+
+We can achive it using configMapKeyRef
+```yml
+env:
+  - name: MY_GREETING
+    valueFrom:
+      configMapKeyRef:
+        key: greeting
+        name: test-cm
+```
+<iframe src="./Deployment/mount_configmap_to_deployment.yaml" frameborder="0" width="100%" height="550"></iframe>
+
 ## 3. Service Templates
 
 #### 1. Gateway API Service
