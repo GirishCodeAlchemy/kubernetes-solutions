@@ -178,3 +178,12 @@ kubectl create configmap test-cm --from-file=greeting=value.txt --namespace test
 ```
 <img width="339" alt="image" src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/d2505751-73a2-45d7-92ba-ded6fe540b1c">
 
+## Issue 12: Create the Deployment template 
+
+> #### Solution:
+
+```bash
+kubectl create deployment sample-deployment --image=busybox -n test --replicas=5 --dry-run=client -o yaml > sample-deployment.yaml
+```
+<img width="774" alt="image" src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/bff74c91-a8b6-47b7-9677-8f03cf760a64">
+
