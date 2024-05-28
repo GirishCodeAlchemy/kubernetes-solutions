@@ -165,3 +165,16 @@ curl -X GET https://<kubernetes-api-server>/api/v1/namespaces/default/pods \
   -H "Authorization: Bearer <your-access-token>" \
   -H 'Accept: application/json'
 ```
+
+## Issue 11: Create the configmap pointing to a file
+
+> #### Solution:
+value.txt
+```text
+Hello world
+```
+```bash
+kubectl create configmap test-cm --from-file=greeting=value.txt --namespace test
+```
+<img width="339" alt="image" src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/d2505751-73a2-45d7-92ba-ded6fe540b1c">
+
