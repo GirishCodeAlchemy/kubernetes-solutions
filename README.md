@@ -192,8 +192,40 @@ kubectl create deployment sample-deployment --image=busybox -n test --replicas=5
 > #### Solution:
 
 ```bash
-kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml
+kubectl run nginx --image=nginx --restart=Never  --port=80 --dry-run=client -o yaml
 ```
-<img width="589" alt="image" src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/908f8b6d-c131-4377-9772-02cbad318700">
+<img width="611" alt="image" src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/9c9817e7-aaad-4eab-9d97-f2f64eb99478">
+
+## Issue 14: Set the image to particular version without editing the image
+
+> #### Solution:
+
+```bash
+kubectl set image pod/nginx nginx=nginx:1.15-alpine
+```
+
+## Issue 15: Check the image version without describe command
+
+> #### Solution:
+
+```bash
+kubectl get po nginx -o jsonpath='{.spec.containers[].image}{"\n"}'
+```
+
+## Issue 16: Create a busybox pod with command sleep 3600
+
+> #### Solution:
+
+```bash
+kubectl run busybox --image=busybox --restart=Never -- /bin/sh -c "sleep 3600"
+```
+
+## Issue 17: Create a busybox pod and echo message 'How are you' and have it deleted immediately
+
+> #### Solution:
+Use the rm flag 
+```bash
+kubectl run busybox --image=nginx --restart=Never -it --rm -- echo "How are you"
+```
 
 
