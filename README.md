@@ -223,9 +223,19 @@ kubectl run busybox --image=busybox --restart=Never -- /bin/sh -c "sleep 3600"
 ## Issue 17: Create a busybox pod and echo message 'How are you' and have it deleted immediately
 
 > #### Solution:
-Use the rm flag 
+Use the `--rm` flag 
 ```bash
 kubectl run busybox --image=nginx --restart=Never -it --rm -- echo "How are you"
 ```
 
+## Issue 18: Different level of verbosity
+
+> #### Solution:
+Use the `--v` flag 
+
+```bash
+kubectl get po nginx --v=7
+kubectl get po nginx --v=8
+kubectl get po nginx --v=9
+```
 
