@@ -187,3 +187,13 @@ kubectl create deployment sample-deployment --image=busybox -n test --replicas=5
 ```
 <img width="774" alt="image" src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/bff74c91-a8b6-47b7-9677-8f03cf760a64">
 
+## Issue 13: Create the nginx pod template 
+
+> #### Solution:
+
+```bash
+kubectl run nginx --image=nginx --restart=Never --dry-run=client -o yaml
+```
+<img width="589" alt="image" src="https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/908f8b6d-c131-4377-9772-02cbad318700">
+
+
