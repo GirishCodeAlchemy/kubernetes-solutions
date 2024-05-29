@@ -239,3 +239,17 @@ kubectl get po nginx --v=8
 kubectl get po nginx --v=9
 ```
 
+## Issue 19: List the pod with custom columns POD_NAME and POD_STATUS
+
+> #### Solution:
+
+```bash
+kubectl get po -o=custom-columns="POD_NAME:.metadata.name, POD_STATUS:.status.containerStatuses[].state"
+```
+## Issue 20: Check the previous logs of the container
+
+> #### Solution:
+
+```bash
+kubectl logs busybox -c busybox2 --previous
+```
