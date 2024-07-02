@@ -136,9 +136,9 @@ Isolation of Internal Services: In a microservices architecture, different servi
 
 ## 4. Advanced Template Details
 
-### 1. ResourceQuota
+### 1. ResourceQuota and Limit Range
 
-The ResourceQuota kind is used to define these limits and enforce them within a Kubernetes cluster. By setting resource quotas, administrators can prevent resource exhaustion and ensure fair resource allocation among different users or applications within the cluster.
+LimitRange sets constraints on the amount of resources (like CPU and memory) that can be requested or used by containers in a namespace. It helps ensure that no single container hogs all the resources. ResourceQuota, on the other hand, is like a budget for a namespace, limiting the total resources that can be consumed within it. This ensures fair resource distribution across different teams or applications.
 
 > For example, a resource quota can be set to limit the total amount of CPU and memory that can be consumed by all pods within a namespace. This helps prevent one application from monopolizing cluster resources and affecting the performance of other applications running in the same namespace. Similarly, resource quotas can limit the number of pods or services that can be created to avoid overloading the cluster.
 
