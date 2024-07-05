@@ -13,7 +13,13 @@
 ![](./assets/KubernetesDetails.png)
 ---
 
-## [🕸️ Kubernetes Sample Templates 🚀](./kubernetes-Templates/README.md)
+## [🕸️ Kubernetes Sample Templates Examples 🚀](./kubernetes-Templates/README.md)
+
+<p align="center">
+  <a href="./kubernetes-Templates/README.md">
+    <img src="" alt="🕸️ Kubernetes Sample Templates  🚀" style="width: 200px; height: 200px; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+  </a>
+</p>
 
 ---
 
