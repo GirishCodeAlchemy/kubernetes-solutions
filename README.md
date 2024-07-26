@@ -169,8 +169,6 @@ kubectl debug pod/myapp-pod -it --copy-to=myapp-debug --container=myapp-containe
 
 > #### Solution:
 
-`kubectl debug` provides a way to create a temporary duplicate of a pod and replace its containers with debug versions or add new troubleshooting tools without affecting the original pod. This is incredibly useful for debugging issues in a live environment without impacting the running state of your application
-
 ```bash
 curl -X GET https://<kubernetes-api-server>/api/v1/namespaces/default/pods \
   -H "Authorization: Bearer <your-access-token>" \
