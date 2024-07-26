@@ -16,8 +16,8 @@
 ## [🕸️ Kubernetes Sample Templates Examples 🚀](./kubernetes-Templates/README.md)
 
 <p align="center">
-  <a href="./kubernetes-Templates/README.md">
-    <img src="" alt="🕸️ Kubernetes Sample Templates  🚀" style="width: 200px; height: 200px; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+  <a href="https://girishcodealchemy.github.io/kubernetes-solutions/kubernetes-Templates/">
+    <img src="*" alt="🕸️ Kubernetes Sample Templates  🚀" style="width: 200px; height: 200px; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
   </a>
 </p>
 
