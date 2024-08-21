@@ -8,13 +8,13 @@
 
 ## Kubernetes Architecture
 
-![](./assets/architecture-diagram.gif)
+<p> <img src="./assets/architecture-diagram.gif"  style="width: 1024px; height: 600px;" alt="Kubernetes Architecture">   </p>
 
 ---
 
 ## Kubernetes Versions:
 
-<p align="center"> <img src="./assets/KubernetesDetails.png"  style="width: 800px; height: 500px;" alt="Kubernetes solutions">   </p>
+<p align="center"> <img src="./assets/KubernetesDetails.png"  style="width: 1024px; height: 600px;" alt="Kubernetes solutions">   </p>
 
 ---
 
