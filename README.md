@@ -14,7 +14,7 @@
 
 ## Kubernetes Versions:
 
-![](./assets/KubernetesDetails.png)
+<p align="center"> <img src="./assets/KubernetesDetails.png"  alt="Kubernetes solutions">   </p>
 
 ---
 
