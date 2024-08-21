@@ -14,7 +14,7 @@
 
 ## Kubernetes Versions:
 
-<p align="center"> <img src="./assets/KubernetesDetails.png"  alt="Kubernetes solutions">   </p>
+<p align="center"> <img src="./assets/KubernetesDetails.png"  style="width: 800px; height: 500px; alt="Kubernetes solutions">   </p>
 
 ---
 
