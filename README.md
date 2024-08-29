@@ -262,3 +262,30 @@ kubectl get po -o=custom-columns="POD_NAME:.metadata.name, POD_STATUS:.status.co
 ```bash
 kubectl logs busybox -c busybox2 --previous
 ```
+
+### Issue 21: Node with a specific GPU and you want to reserve it for running only GPU-intensive workloads
+> #### Solution:
+```bash
+kubectl taint nodes <node-name> gpu=true:NoSchedule
+```
+This taint would prevent any new pods from being scheduled on this node unless they tolerate the "gpu=true" taint.
+
+Tolerations are applied to pods and indicate that the pod can be scheduled on nodes with specific taints. 
+A pod with toleration will only be scheduled on nodes that have a matching taint. By setting tolerations,
+you can make sure that certain pods are placed on nodes with specific attributes or restrictions, even if those nodes are tainted.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gpu-pod
+spec:
+  containers:
+  - name: my-app
+    image: my-app-image
+  tolerations:
+  - key: "gpu"
+    operator: "Exists"
+    effect: "NoSchedule"
+```
+
