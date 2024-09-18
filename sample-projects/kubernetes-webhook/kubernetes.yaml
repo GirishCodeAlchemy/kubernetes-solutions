@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: webhooks
+---
+
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: namespace.webhook.example.com
+webhooks:
+  - name: namespace.webhook.create.com
+    clientConfig:
+      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVERENDQXZTZ0F3SUJBZ0lVZHRGMXVtNmZnSitlYUtYeisyejkxeUhMQVJnd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2RqRUxNQWtHQTFVRUJoTUNWVk14RXpBUkJnTlZCQWdNQ2tOaGJHbG1iM0p1YVdFeEZqQVVCZ05WQkFjTQpEVk5oYmlCR2NtRnVZMmx6WTI4eEVqQVFCZ05WQkFvTUNVMTVRMjl0Y0dGdWVURVRNQkVHQTFVRUN3d0tUWGxFCmFYWnBjMmx2YmpFUk1BOEdBMVVFQXd3SVRYbFNiMjkwUTBFd0hoY05NalF3T1RBeU1UVXpPVE16V2hjTk1qVXcKT1RBeU1UVXpPVE16V2pDQmt6RUxNQWtHQTFVRUJoTUNWVk14RXpBUkJnTlZCQWdNQ2tOaGJHbG1iM0p1YVdFeApGakFVQmdOVkJBY01EVk5oYmlCR2NtRnVZMmx6WTI4eEVqQVFCZ05WQkFvTUNVMTVRMjl0Y0dGdWVURVRNQkVHCkExVUVDd3dLVFhsRWFYWnBjMmx2YmpFdU1Dd0dBMVVFQXd3bGJYVjBZWFJwYm1jdGQyVmlhRzl2YXkxelpYSjIKYVdObExuZGxZbWh2YjJ0ekxuTjJZekNDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQgpBTmU1TzFjWWYrdWlsSGNjdU9vTlN0NHorbUdPZzJseGFuUFFWTmNabFFzZlpaa1RyTVVkTmkzdmhHWDFrWEpRCm4xYXlMaU5FRmFvdFd2MEowenJRM1R6akxxcU9SSUgyY0MzY3pRQmtQcTBuamhaR0dvUmlBUmtVNDgyU0R6d3gKV1BFQ1FNQjJiT0hlMkJGR1dMYnl4UXprOFRiR0xEaGFPUzlGeVo0RlNOS0RRcDg5bTM2MldTWnVmMWRDM3B4dgpSWnZwRE0vVFNPWExUQTZTajlyNVFnbjJkN3dDUkhjbWM0T000VUh2WkwreWJ0THU3UnFsWTFmMHlTcnRZUmllCjF2NDdjZHZYTktBNXlTbVErWWFTdjJWOGtEM0E0Q1lNWWc0eUZ2bjJmenJhbUsvSWM3NnpHUVZWdER5MkNXdkcKNU8rWFJpYVBhbVJqT1lMTk9nYkQzYThDQXdFQUFhTjBNSEl3TUFZRFZSMFJCQ2t3SjRJbGJYVjBZWFJwYm1jdApkMlZpYUc5dmF5MXpaWEoyYVdObExuZGxZbWh2YjJ0ekxuTjJZekFkQmdOVkhRNEVGZ1FVTisyRmRFY00vVDI1CmRwd1d6ckRpMlp0SzJiY3dId1lEVlIwakJCZ3dGb0FVVUg3QTk1SFBDTDdrWmVQNmk0YklTV2F0UWRRd0RRWUoKS29aSWh2Y05BUUVMQlFBRGdnRUJBSVk5QmRMQnpiVkJqa0VBK24zQVhCbXRtN0VkK2d4aENYRzh1UVJtWXg5Ngo2SFFuTVBUUm5YWFJSb3dqNElqRFZCQVJmeUREa0k4anNZcUZsWmlpNGduMnZSd1hBQjhrMTJGb3IwRld0a2J1CkJSeGRnbEFLbTJibkhpMzhRTXYrUXYyb3F5T2YyUG1Id1pobW5vZDBVQ1pmNVd4ZWpwS2lndXl4aWFZWmxDbHEKTmxoRWk4NWNOOG5jR1hHaHBJOWsvTjBQMkxYSnhKQlBkTGFXcUlMS3FydXNEeGpkeUIzYmdmWUZWTlFjbzg2YwpaMyt6cWs1MG9MUEt2ZnN4WjNaOFBxSVMxVmlzRVU5R25TOEdIa2RVd25KaVJkOXZ3dWg4SFhzZHhsc2dva1hoCmdubkc2THRKbFRZY3V3QlhDejM0andEbm52WHMwWWZMajBaVzRIS21hblU9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      service:
+        name: validating-webhooks
+        namespace: webhooks
+        path: /webhook
+        port: 443
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["namespaces"]
+    admissionReviewVersions: ["v1"]
+    failurePolicy: Ignore
+    sideEffects: None
+  - name: namespace.webhook.delete.com
+    clientConfig:
+      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUVERENDQXZTZ0F3SUJBZ0lVZHRGMXVtNmZnSitlYUtYeisyejkxeUhMQVJnd0RRWUpLb1pJaHZjTkFRRUwKQlFBd2RqRUxNQWtHQTFVRUJoTUNWVk14RXpBUkJnTlZCQWdNQ2tOaGJHbG1iM0p1YVdFeEZqQVVCZ05WQkFjTQpEVk5oYmlCR2NtRnVZMmx6WTI4eEVqQVFCZ05WQkFvTUNVMTVRMjl0Y0dGdWVURVRNQkVHQTFVRUN3d0tUWGxFCmFYWnBjMmx2YmpFUk1BOEdBMVVFQXd3SVRYbFNiMjkwUTBFd0hoY05NalF3T1RBeU1UVXpPVE16V2hjTk1qVXcKT1RBeU1UVXpPVE16V2pDQmt6RUxNQWtHQTFVRUJoTUNWVk14RXpBUkJnTlZCQWdNQ2tOaGJHbG1iM0p1YVdFeApGakFVQmdOVkJBY01EVk5oYmlCR2NtRnVZMmx6WTI4eEVqQVFCZ05WQkFvTUNVMTVRMjl0Y0dGdWVURVRNQkVHCkExVUVDd3dLVFhsRWFYWnBjMmx2YmpFdU1Dd0dBMVVFQXd3bGJYVjBZWFJwYm1jdGQyVmlhRzl2YXkxelpYSjIKYVdObExuZGxZbWh2YjJ0ekxuTjJZekNDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQgpBTmU1TzFjWWYrdWlsSGNjdU9vTlN0NHorbUdPZzJseGFuUFFWTmNabFFzZlpaa1RyTVVkTmkzdmhHWDFrWEpRCm4xYXlMaU5FRmFvdFd2MEowenJRM1R6akxxcU9SSUgyY0MzY3pRQmtQcTBuamhaR0dvUmlBUmtVNDgyU0R6d3gKV1BFQ1FNQjJiT0hlMkJGR1dMYnl4UXprOFRiR0xEaGFPUzlGeVo0RlNOS0RRcDg5bTM2MldTWnVmMWRDM3B4dgpSWnZwRE0vVFNPWExUQTZTajlyNVFnbjJkN3dDUkhjbWM0T000VUh2WkwreWJ0THU3UnFsWTFmMHlTcnRZUmllCjF2NDdjZHZYTktBNXlTbVErWWFTdjJWOGtEM0E0Q1lNWWc0eUZ2bjJmenJhbUsvSWM3NnpHUVZWdER5MkNXdkcKNU8rWFJpYVBhbVJqT1lMTk9nYkQzYThDQXdFQUFhTjBNSEl3TUFZRFZSMFJCQ2t3SjRJbGJYVjBZWFJwYm1jdApkMlZpYUc5dmF5MXpaWEoyYVdObExuZGxZbWh2YjJ0ekxuTjJZekFkQmdOVkhRNEVGZ1FVTisyRmRFY00vVDI1CmRwd1d6ckRpMlp0SzJiY3dId1lEVlIwakJCZ3dGb0FVVUg3QTk1SFBDTDdrWmVQNmk0YklTV2F0UWRRd0RRWUoKS29aSWh2Y05BUUVMQlFBRGdnRUJBSVk5QmRMQnpiVkJqa0VBK24zQVhCbXRtN0VkK2d4aENYRzh1UVJtWXg5Ngo2SFFuTVBUUm5YWFJSb3dqNElqRFZCQVJmeUREa0k4anNZcUZsWmlpNGduMnZSd1hBQjhrMTJGb3IwRld0a2J1CkJSeGRnbEFLbTJibkhpMzhRTXYrUXYyb3F5T2YyUG1Id1pobW5vZDBVQ1pmNVd4ZWpwS2lndXl4aWFZWmxDbHEKTmxoRWk4NWNOOG5jR1hHaHBJOWsvTjBQMkxYSnhKQlBkTGFXcUlMS3FydXNEeGpkeUIzYmdmWUZWTlFjbzg2YwpaMyt6cWs1MG9MUEt2ZnN4WjNaOFBxSVMxVmlzRVU5R25TOEdIa2RVd25KaVJkOXZ3dWg4SFhzZHhsc2dva1hoCmdubkc2THRKbFRZY3V3QlhDejM0andEbm52WHMwWWZMajBaVzRIS21hblU9Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+      service:
+        name: validating-webhooks
+        namespace: webhooks
+        path: /delete
+        port: 443
+    rules:
+      - operations: ["DELETE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["namespaces"]
+    admissionReviewVersions: ["v1"]
+    failurePolicy: Ignore
+    sideEffects: None
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: validating-webhooks
+  namespace: webhooks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: validating-webhooks
+  template:
+    metadata:
+      labels:
+        app: validating-webhooks
+    spec:
+      serviceAccountName: webhook-sa
+      containers:
+      - name: mutating-webhook
+        image: namespace_update:v1
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        volumeMounts:
+        - name: webhook-certs
+          mountPath: /usr/local/share/ca-certificates/
+          readOnly: true
+      volumes:
+      - name: webhook-certs
+        secret:
+          secretName: tls-secret
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: validating-webhooks
+  namespace: webhooks
+spec:
+  type: ClusterIP
+  ports:
+  - port: 443
+    targetPort: 5000
+  selector:
+    app: validating-webhooks

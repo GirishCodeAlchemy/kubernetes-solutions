@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.webhookService.name }}
+  namespace: {{ .Values.webhookService.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: validating-webhooks
+  template:
+    metadata:
+      labels:
+        app: validating-webhooks
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: mutating-webhook
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 5000
+          volumeMounts:
+            - name: webhook-certs
+              mountPath: /usr/local/share/ca-certificates/
+              readOnly: true
+            - name: ca-cert-config
+              mountPath: /etc/webhook/certs
+              subPath: ca-cert.pem
+      volumes:
+        - name: webhook-certs
+          secret:
+            secretName: {{ .Values.tlsSecret.name }}
+        - name: ca-cert-config
+          configMap:
+            name: {{ .Values.caConfigMap.name }}

@@ -1,0 +1,17 @@
+apiVersion: v2
+name: webhook-chart
+description: A Helm chart for Kubernetes webhook deployment
+version: 0.1.0
+appVersion: "1.0.0"
+
+keywords:
+  - webhook
+  - validating webhook
+  - tls
+  - admission controller
+
+maintainers:
+  - name: GirishCodeAlchemy
+    email: GirishCodeAlchemy@gmail.com
+# sources:
+#   - https://github.com/your-repo/webhook-chart

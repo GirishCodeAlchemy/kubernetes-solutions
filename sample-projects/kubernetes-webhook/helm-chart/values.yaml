@@ -1,0 +1,31 @@
+# values.yaml
+replicaCount: 1
+
+namespace: webhooks
+image:
+  repository: alchemy_webhook
+  tag: v1
+  pullPolicy: Never
+
+serviceAccount:
+  name: webhook-sa
+
+tlsSecret:
+  name: tls-secret
+
+caConfigMap:
+  name: ca-cert-configmap
+
+webhookService:
+  name: validating-webhooks
+  namespace: webhooks
+  port: 443
+
+# Certificate paths (will be injected into the secret)
+certificates:
+  caCert: |
+    {{ .Files.Get "certs/ca.crt" | indent 4 }}
+  webhookCert: |
+    {{ .Files.Get "certs/webhook.crt" | indent 4 }}
+  webhookKey: |
+    {{ .Files.Get "certs/webhook.key" | indent 4 }}

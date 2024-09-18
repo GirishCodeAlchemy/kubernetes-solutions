@@ -1,0 +1,22 @@
+# templates/validating-webhook.yaml
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: namespace.webhook.example.com
+webhooks:
+  - name: namespace.webhook.create.com
+    clientConfig:
+      caBundle: {{ .Values.certificates.caCert | b64enc | quote }}
+      service:
+        name: {{ .Values.webhookService.name }}
+        namespace: {{ .Values.webhookService.namespace }}
+        path: /webhook
+        port: {{ .Values.webhookService.port }}
+    rules:
+      - operations: ["CREATE"]
+        apiGroups: [""]
+        apiVersions: ["v1"]
+        resources: ["namespaces"]
+    admissionReviewVersions: ["v1"]
+    failurePolicy: Ignore
+    sideEffects: None
