@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: {{ .Values.webhookService.name }}
   namespace: {{ .Values.webhookService.namespace }}
+  labels:
+    app.kubernetes.io/managed-by: Helm
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -22,7 +24,7 @@ spec:
             - containerPort: 5000
           volumeMounts:
             - name: webhook-certs
-              mountPath: /usr/local/share/ca-certificates/
+              mountPath: /etc/ssl/ca-certificates/
               readOnly: true
             - name: ca-cert-config
               mountPath: /etc/webhook/certs

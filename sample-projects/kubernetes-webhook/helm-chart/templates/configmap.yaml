@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: {{ .Values.caConfigMap.name }}
   namespace: {{ .Values.webhookService.namespace }}
+  labels:
+    app.kubernetes.io/managed-by: Helm
 data:
   ca-cert.pem: |
     {{ .Values.certificates.caCert | indent 4 }}
