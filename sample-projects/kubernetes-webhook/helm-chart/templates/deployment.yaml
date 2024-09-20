@@ -5,6 +5,10 @@ metadata:
   namespace: {{ .Values.webhookService.namespace }}
   labels:
     app.kubernetes.io/managed-by: Helm
+    # app.kubernetes.io/name: {{ include "webhook-chart.name" . }}
+    # helm.sh/chart: {{ include "webhook-chart.chart" . }}
+    # app.kubernetes.io/instance: {{ .Release.Name }}
+    # app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -17,22 +21,36 @@ spec:
     spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
-        - name: mutating-webhook
+        - name: {{ .Chart.Name}}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 5000
+          env:
+            - name: POSTGRESQL_HOST
+              value: "postgres.postgres.svc.cluster.local"
+            - name: POSTGRESQL_PORT
+              value: "5432"
+            - name: POSTGRESQL_DATABASE
+              value: "{{ .Values.postgresql.auth.database }}"
+            - name: POSTGRESQL_USER
+              value: "{{ .Values.postgresql.auth.username }}"
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "webhook-chart.fullname" . }}-postgresql
+                  key: postgresql-password
           volumeMounts:
             - name: webhook-certs
               mountPath: /etc/ssl/ca-certificates/
               readOnly: true
-            - name: ca-cert-config
-              mountPath: /etc/webhook/certs
-              subPath: ca-cert.pem
+            # - name: ca-cert-config
+            #   mountPath: /etc/webhook/certs
+            #   subPath: ca-cert.pem
       volumes:
         - name: webhook-certs
           secret:
             secretName: {{ .Values.tlsSecret.name }}
-        - name: ca-cert-config
-          configMap:
-            name: {{ .Values.caConfigMap.name }}
+        # - name: ca-cert-config
+        #   configMap:
+        #     name: {{ .Values.caConfigMap.name }}

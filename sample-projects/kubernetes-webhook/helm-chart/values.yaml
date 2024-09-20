@@ -29,3 +29,19 @@ certificates:
     {{ .Files.Get "certs/webhook.crt" | indent 4 }}
   webhookKey: |
     {{ .Files.Get "certs/webhook.key" | indent 4 }}
+
+
+postgresql:
+  enabled: true
+  auth:
+    username: myuser
+    password: mypassword
+    database: mydatabase
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+  service:
+    port: 5432
+    type: ClusterIP
+    nameOverride: postgres
