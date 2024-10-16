@@ -288,4 +288,15 @@ spec:
     operator: "Exists"
     effect: "NoSchedule"
 ```
+### Issue 22: Check the resource usage per container inside the pod
+> #### Solution:
+```bash
+kubectl top pod --containers
+```
+
+### Issue 23: To clean up old resources while applying new ones (super useful for selective cleanups)
+> #### Solution:
+```bash
+kubectl apply --prune -l app=<label>
+```
 
