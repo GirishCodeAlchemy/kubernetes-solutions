@@ -25,7 +25,6 @@
     <img src="*" alt="🕸️ Kubernetes Sample Templates  🚀" style="width: 200px; height: 200px; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
   </a>
 </p>
-
 ---
 
 # Common Issues & Solutions
