@@ -299,4 +299,3 @@ kubectl top pod --containers
 ```bash
 kubectl apply --prune -l app=<label>
 ```
-
