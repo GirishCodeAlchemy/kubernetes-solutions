@@ -6,6 +6,7 @@
 <!-- https://github.com/GirishCodeAlchemy/kubernetes-solutions/assets/143807663/12ac2437-a185-4112-8abb-01e8ec797b80 -->
 ---
 
+
 ## Kubernetes Architecture
 
 <p align="center"> <img src="./assets/architecture-diagram.gif"  style="width: 1024px; height: 600px;" alt="Kubernetes Architecture">   </p>
